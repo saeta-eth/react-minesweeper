@@ -2,9 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App';
 import {Provider} from 'react-redux';
-import configureStore from './store/configure-store';
+import configureStore from './store/configure';
 
-const store = configureStore();
+const initialState = {
+  config: {rows: 10, cols: 10}
+}
+
+const store = configureStore(initialState);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './index.css';
 import Minesweeper from '../Minesweeper';
+
+import './index.css';
 
 class App extends Component {
   render() {
