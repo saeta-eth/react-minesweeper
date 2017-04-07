@@ -1,8 +1,15 @@
 import React from 'react';
+import { checkboxFlow }  from '../../constants'
 
-const Checkbox = ({ row, col, block, handleClick, handleFlag }) => (
-  <div className="checkbox-mw">
-    {`${row}, ${col}`}
+
+import './index.css';
+
+const Checkbox = ({ row, col, grid, handleClick, handleRightClick }) => (
+  <div 
+    className={`checkbox-mw ${grid[row][col] === checkboxFlow.CHECKBOX_PRESSED ? 'isPressed': ''}` }
+    onClick={handleClick.bind(this, row, col)}
+    onContextMenu={handleRightClick.bind(this, row, col)}
+  >
   </div>
 );
 
