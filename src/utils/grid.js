@@ -16,13 +16,12 @@ const fillRandomBoolean =  function fillRandomBoolean(bombs , max) {
   return Array.from({length: bombs}, () => Math.floor(Math.random() * max));
 }
 
-const fillMultiArray = function fillMultiArray(x,y, value) {
-  return deepClone(new Array(x).fill(new Array(y).fill(value)));
+const fillMultiArray = function fillMultiArray(ROW_NUMBER, COLS_NUMBER, defaultValue) {
+  return Array.from(Array(ROW_NUMBER), 
+     row => Array.from(Array(COLS_NUMBER), cell => typeof defaultValue === 'object' ? Object.assign({}, defaultValue) : defaultValue)
+  );
 }
 
-const fillMultiArray = function fillMultiArray(x,y, value) {
-  return deepClone(new Array(x).fill(new Array(y).fill(value)));
-}
 const fillBombGrid = function fillBombGrid(positionBombs, ROW_NUMBER, COLS_NUMBER) {
   const arrayBomb = fillMultiArray(ROW_NUMBER, COLS_NUMBER, 0);
   for (let bomb = 0; bomb < (positionBombs.length / 2); bomb += 2) {
