@@ -10,7 +10,7 @@ const Checkbox = ({ row, col, grid, handleClick, handleRightClick }) => (
     onClick={handleClick.bind(this, row, col)}
     onContextMenu={handleRightClick.bind(this, row, col)}
   >
-    { typeof grid[row][col].status === 'number' ? grid[row][col].status : '' }
+    { grid[row][col].visibility ? grid[row][col].status : '' }
   </div>
 );
 
