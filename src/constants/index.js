@@ -11,10 +11,10 @@ const checkboxFlow = createConstants(
   'CHECKBOX_FLAG',
 );
 
-const ROW_NUMBER = 20;
-const COLS_NUMBER = 20;
+const ROW_NUMBER = 16;
+const COLS_NUMBER = 16;
 
-const CANT_POSITIONS = 40;
+const CANT_POSITIONS = 80;
 
 export {
   actionTypes,
