@@ -48,8 +48,7 @@ class Minesweeper extends Component {
       bomb,
       changeGrid
     } = this.props;
-
-    const isBomb = bomb[row][col];
+    const isBomb = bomb[col][row];
     if(isBomb){
       alert('Game over');
     } else {
