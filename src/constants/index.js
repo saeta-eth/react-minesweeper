@@ -5,6 +5,9 @@ const actionTypes = createConstants(
   'RIGHT_CLICK_CELL',
   'RIGHT_CLICK_ON_BOMB',
   'LEFT_CLICK_CELL',
+  'NEW_GRID',
+  'NEW_STOPWATCH',
+  'UPDATE_STOPWATCH'
 );
 
 const cellStatus = createConstants(
@@ -18,11 +21,13 @@ const cellStatus = createConstants(
 const ROW_NUMBER = 16;
 const COLS_NUMBER = 16;
 const CANT_POSITIONS = 80;
+const STOPWATCH_INITIAL_VALUE = '00:00:00';
 
 export {
   actionTypes,
   cellStatus,
   ROW_NUMBER,
   COLS_NUMBER,
-  CANT_POSITIONS
+  CANT_POSITIONS,
+  STOPWATCH_INITIAL_VALUE
 }

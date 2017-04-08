@@ -1,11 +1,12 @@
 import config from './config.js';
 import grid from './grid.js';
+import stopwatch from './stopwatch';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
   config,
   grid,
-  bomb: (state = {}) => state,
+  stopwatch
 });
 
 export default rootReducer;

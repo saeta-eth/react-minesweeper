@@ -1,15 +1,10 @@
-.app-container {
-
-}
-
 .header {
   text-align: center;
   background-color: #222;
   height: 60px;
-  padding: 20px;
   color: white;
 }
 
-.intro {
-  font-size: large;
+.title {
+  line-height: 2.5;
 }

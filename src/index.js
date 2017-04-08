@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/App';
 import { Provider } from 'react-redux';
 import configureStore from './store/configure';
 
-import { cellStatus, ROW_NUMBER, COLS_NUMBER, CANT_POSITIONS }  from './constants';
+import Routes from './routes';
+
+import { cellStatus, ROW_NUMBER, COLS_NUMBER, CANT_POSITIONS, STOPWATCH_INITIAL_VALUE }  from './constants';
 import { fillBombGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from './utils/grid';
+
+import 'normalize.css';
+import './index.css';
 
 const positionBombs = fillRandomBoolean(CANT_POSITIONS, ROW_NUMBER);
 
@@ -23,14 +27,15 @@ const gridWithWarningNumbers = fillWarningNumbers(
 
 const initialState = {
   config: { rows: ROW_NUMBER, cols: COLS_NUMBER },
-  grid: gridWithWarningNumbers
+  grid: gridWithWarningNumbers,
+  stopwatch: { text: STOPWATCH_INITIAL_VALUE, seconds: 0, minutes: 0, hours: 0 }
 }
 
 const store = configureStore(initialState);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Routes />
   </Provider>,
   document.getElementById('root')
 );

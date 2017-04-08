@@ -2,12 +2,15 @@
   "name": "minesweeper",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://slorenzo.github.io/minesweeper-challenge",
   "dependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-redux": "^5.0.3",
-    "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "normalize.css": "^6.0.0",
+    "react": "~15.4.2",
+    "react-dom": "~15.4.2",
+    "react-redux": "~5.0.3",
+    "react-router-dom": "^4.0.0",
+    "redux": "~3.6.0",
+    "redux-thunk": "~2.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -17,6 +20,7 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.4.1",
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {
@@ -24,6 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint src/*"
+    "lint": "eslint src/*",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   }
 }

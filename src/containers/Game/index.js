@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import Minesweeper from '../Minesweeper';
+import Stopwatch from '../Stopwatch';
 
 import './index.css';
 
-class App extends Component {
+class Game extends Component {
   render() {
     return (
       <div className="app-container">
-        <div className="header">
-          <h2>Minesweeper Chanllenge</h2>
-        </div>
+        <Stopwatch />
         <Minesweeper />
       </div>
     );
   }
 }
 
-export default App;
+export default Game;
