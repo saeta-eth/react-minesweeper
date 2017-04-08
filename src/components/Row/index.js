@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from '../Checkbox';
+import Cell from '../Cell';
 
 import './index.css';
 
@@ -8,7 +8,7 @@ const Row = ({ cols, row, grid, handleClick, handleRightClick }) => (
     {
       new Array(cols).fill(0).map((cur, col) => {
         return (
-          <Checkbox
+          <Cell
             key={`${row}-${col}`}
             grid={grid}
             row={row}

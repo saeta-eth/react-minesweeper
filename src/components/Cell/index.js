@@ -4,7 +4,7 @@ import { cellStatus }  from '../../constants'
 
 import './index.css';
 
-const Checkbox = ({ row, col, grid, handleClick, handleRightClick }) => (
+const Cell = ({ row, col, grid, handleClick, handleRightClick }) => (
   <div 
     className={`checkbox-mw ${grid[row][col].status === cellStatus.CELL_PRESSED  || grid[row][col].visibility ? 'isPressed': ''}` }
     onClick={handleClick.bind(this, row, col)}
@@ -15,4 +15,4 @@ const Checkbox = ({ row, col, grid, handleClick, handleRightClick }) => (
   </div>
 );
 
-export default Checkbox;
+export default Cell;
