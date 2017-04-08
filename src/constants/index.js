@@ -5,6 +5,7 @@ const actionTypes = createConstants(
   'RIGHT_CLICK_CELL',
   'RIGHT_CLICK_ON_BOMB',
   'LEFT_CLICK_CELL',
+  'NEW_GRID'
 );
 
 const cellStatus = createConstants(
