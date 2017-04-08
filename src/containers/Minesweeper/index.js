@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import Square from '../../components/Square';
 
 import { leftClickGrid, rightClickGrid, newGrid } from '../../actions/grid';
-import { cellStatus }  from '../../constants'
+import { newStopwatch } from '../../actions/stopwatch'
+import { cellStatus, STOPWATCH_INITIAL_VALUE }  from '../../constants'
 
 class Minesweeper extends Component {
 
@@ -66,7 +67,8 @@ class Minesweeper extends Component {
     const {
       grid,
       leftClickGrid,
-      newGrid
+      newGrid,
+      newStopwatch
     } = this.props;
     const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
     const isFlag = grid[col][row].status === cellStatus.CELL_FLAG || grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
@@ -74,6 +76,7 @@ class Minesweeper extends Component {
       if(isBomb){
         alert('Game over');
         newGrid();
+        newStopwatch(STOPWATCH_INITIAL_VALUE);
       } else {
         if (!grid[col][row].visibility) {
           leftClickGrid(col, row, cellStatus.CELL_PRESSED);
@@ -93,7 +96,8 @@ function mapDispatchToProps(dispatch) {
   return {
     leftClickGrid: bindActionCreators(leftClickGrid, dispatch),
     rightClickGrid: bindActionCreators(rightClickGrid, dispatch),
-    newGrid: bindActionCreators(newGrid, dispatch)
+    newGrid: bindActionCreators(newGrid, dispatch),
+    newStopwatch: bindActionCreators(newStopwatch, dispatch)
   };
 }
 
