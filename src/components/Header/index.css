@@ -1,0 +1,10 @@
+.header {
+  text-align: center;
+  background-color: #222;
+  height: 60px;
+  color: white;
+}
+
+.title {
+  line-height: 2.5;
+}
