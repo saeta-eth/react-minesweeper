@@ -1,8 +1,17 @@
 import { actionTypes } from '../constants';
 
-export const changeGrid = (col, row, value) => {
+export const leftClickGrid = (col, row, value) => {
   return {
-    type: actionTypes.CHANGE_GRID,
+    type: actionTypes.LEFT_CLICK_CELL,
+    col: col,
+    row: row,
+    value: value
+  };
+}
+
+export const rightClickGrid = (col, row, value) => {
+  return {
+    type: actionTypes.RIGHT_CLICK_CELL,
     col: col,
     row: row,
     value: value
