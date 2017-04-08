@@ -4,26 +4,25 @@ import App from './containers/App';
 import { Provider } from 'react-redux';
 import configureStore from './store/configure';
 
-import { ROW_NUMBER, COLS_NUMBER, checkboxFlow, CANT_POSITIONS }  from './constants';
+import { cellStatus, ROW_NUMBER, COLS_NUMBER, CANT_POSITIONS }  from './constants';
 import { fillBombGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from './utils/grid';
 
-
 const positionBombs = fillRandomBoolean(CANT_POSITIONS, ROW_NUMBER);
-const bomb = fillBombGrid(positionBombs, ROW_NUMBER, COLS_NUMBER);
+
+const grid = fillMultiArray(ROW_NUMBER, COLS_NUMBER, {
+  status: cellStatus.CELL_INITIAL,
+  visibility: false,
+})
+
+const gridWithBomb = fillBombGrid(grid, positionBombs);
 
 const gridWithWarningNumbers = fillWarningNumbers(
-  fillMultiArray(ROW_NUMBER, COLS_NUMBER, {
-    status: checkboxFlow.CHECKBOX_INITIAL,
-    visibility: false,
-  }),
+  gridWithBomb,
   positionBombs
 );
 
-console.log('gridWithWarningNumbers', gridWithWarningNumbers)
-
 const initialState = {
   config: { rows: ROW_NUMBER, cols: COLS_NUMBER },
-  bomb: bomb,
   grid: gridWithWarningNumbers
 }
 
