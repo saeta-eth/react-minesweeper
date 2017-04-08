@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import ConfigOptions from '../../components/ConfigOptions';
 import { newGrid } from '../../actions/grid';
+import { newStopwatch } from '../../actions/stopwatch';
+import{ STOPWATCH_INITIAL_VALUE }  from '../../constants';
 
 import './index.css';
 
@@ -16,8 +18,10 @@ class Config extends Component {
   onSelect(e){
     const {
       history,
-      newGrid
+      newGrid,
+      newStopwatch
     } = this.props;
+
     const option = e.target.value;
 
     if (option === 'R') {
@@ -25,6 +29,7 @@ class Config extends Component {
     }
     if (option === 'S') {
       newGrid();
+      newStopwatch(STOPWATCH_INITIAL_VALUE);
       history.push('/game');
     }
   }
@@ -40,7 +45,8 @@ class Config extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    newGrid : bindActionCreators(newGrid, dispatch)
+    newGrid: bindActionCreators(newGrid, dispatch),
+    newStopwatch: bindActionCreators(newStopwatch, dispatch)
   };
 }
 

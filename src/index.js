@@ -5,7 +5,7 @@ import configureStore from './store/configure';
 
 import Routes from './routes';
 
-import { cellStatus, ROW_NUMBER, COLS_NUMBER, CANT_POSITIONS }  from './constants';
+import { cellStatus, ROW_NUMBER, COLS_NUMBER, CANT_POSITIONS, STOPWATCH_INITIAL_VALUE }  from './constants';
 import { fillBombGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from './utils/grid';
 
 import 'normalize.css';
@@ -27,7 +27,8 @@ const gridWithWarningNumbers = fillWarningNumbers(
 
 const initialState = {
   config: { rows: ROW_NUMBER, cols: COLS_NUMBER },
-  grid: gridWithWarningNumbers
+  grid: gridWithWarningNumbers,
+  stopwatch: { text: STOPWATCH_INITIAL_VALUE, seconds: 0, minutes: 0, hours: 0 }
 }
 
 const store = configureStore(initialState);
