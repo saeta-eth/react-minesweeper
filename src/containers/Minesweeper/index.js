@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Square from '../../components/Square';
 
-import { changeGrid } from '../../actions/grid';
-import { checkboxFlow }  from '../../constants'
+import { leftClickGrid, rightClickGrid } from '../../actions/grid';
+import { cellStatus }  from '../../constants'
 
 
 class Minesweeper extends Component {
@@ -38,36 +38,60 @@ class Minesweeper extends Component {
   handleRightClick(col, row, e) {
     e.preventDefault();
     const {
-      changeGrid
+      grid,
+      rightClickGrid
     } = this.props;
-    changeGrid(col, row, checkboxFlow.CHECKBOX_FLAG);
+    const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
+    const isPressed = grid[col][row].status === cellStatus.CELL_PRESSED;
+    const isFlag = grid[col][row].status === cellStatus.CELL_FLAG;
+    const isFlagBomb = grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
+    if (!isPressed) {
+      if (!isFlag && !isFlagBomb) {
+        if (isBomb) {
+          rightClickGrid(col, row, cellStatus.CELL_BOMB_FLAG);
+        } else {
+          rightClickGrid(col, row, cellStatus.CELL_FLAG);
+        }
+      } else {
+        if (isFlag) {
+          rightClickGrid(col, row, cellStatus.CELL_INITIAL);  
+        }
+        if (isFlagBomb) {
+          rightClickGrid(col, row, cellStatus.CELL_BOMB);  
+        }
+      }
+    }
   }
 
   handleClick(col, row) {
     const {
-      bomb,
-      changeGrid
+      grid,
+      leftClickGrid
     } = this.props;
-    const isBomb = bomb[col][row];
-    if(isBomb){
-      alert('Game over');
-    } else {
-      changeGrid(col, row, checkboxFlow.CHECKBOX_PRESSED);
+    const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
+    const isFlag = grid[col][row].status === cellStatus.CELL_FLAG || grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
+    if (!isFlag) {
+      if(isBomb){
+        alert('Game over');
+      } else {
+        if (!grid[col][row].visibility) {
+          leftClickGrid(col, row, cellStatus.CELL_PRESSED);
+        }
+      }
     }
-    
   }
 }
 
 Minesweeper.propTypes = {
   rows: React.PropTypes.number.isRequired,
   cols: React.PropTypes.number.isRequired,
-  bomb: React.PropTypes.array.isRequired,
   grid: React.PropTypes.array.isRequired
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeGrid : bindActionCreators(changeGrid, dispatch)
+    leftClickGrid : bindActionCreators(leftClickGrid, dispatch),
+    rightClickGrid: bindActionCreators(rightClickGrid, dispatch)
   };
 }
 
@@ -75,7 +99,6 @@ const mapStateToProps = (state) => {
   return {
     rows: state.config.rows,
     cols: state.config.cols,
-    bomb: state.bomb,
     grid: state.grid
   }
 };
