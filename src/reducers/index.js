@@ -4,8 +4,7 @@ import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
   config,
-  grid,
-  bomb: (state = {}) => state,
+  grid
 });
 
 export default rootReducer;

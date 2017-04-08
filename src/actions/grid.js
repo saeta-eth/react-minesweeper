@@ -17,3 +17,9 @@ export const rightClickGrid = (col, row, value) => {
     value: value
   };
 }
+
+export const newGrid = () => {
+  return {
+    type: actionTypes.NEW_GRID,
+  };
+}

@@ -3,9 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Square from '../../components/Square';
 
-import { leftClickGrid, rightClickGrid } from '../../actions/grid';
+import { leftClickGrid, rightClickGrid, newGrid } from '../../actions/grid';
 import { cellStatus }  from '../../constants'
-
 
 class Minesweeper extends Component {
 
@@ -66,13 +65,15 @@ class Minesweeper extends Component {
   handleClick(col, row) {
     const {
       grid,
-      leftClickGrid
+      leftClickGrid,
+      newGrid
     } = this.props;
     const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
     const isFlag = grid[col][row].status === cellStatus.CELL_FLAG || grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
     if (!isFlag) {
       if(isBomb){
         alert('Game over');
+        newGrid();
       } else {
         if (!grid[col][row].visibility) {
           leftClickGrid(col, row, cellStatus.CELL_PRESSED);
@@ -90,8 +91,9 @@ Minesweeper.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    leftClickGrid : bindActionCreators(leftClickGrid, dispatch),
-    rightClickGrid: bindActionCreators(rightClickGrid, dispatch)
+    leftClickGrid: bindActionCreators(leftClickGrid, dispatch),
+    rightClickGrid: bindActionCreators(rightClickGrid, dispatch),
+    newGrid: bindActionCreators(newGrid, dispatch)
   };
 }
 
