@@ -7,31 +7,48 @@ import TimeElapsed from '../../components/TimeElapsed';
 import { updateStopwatch } from '../../actions/stopwatch';
 import { STOPWATCH_INITIAL_VALUE }  from '../../constants';
 
+import './index.css';
+
 
 class Stopwacht extends Component {
   constructor(props) {
     super(props);
-    this.seconds = this.props.seconds;
-    this.minutes = this.props.minutes;
-    this.hours = this.props.hours;
-    this.timer();
+    if (props.action === 'resume') {
+      this.seconds = this.props.seconds;
+      this.minutes = this.props.minutes;
+      this.hours = this.props.hours;
+    }
+    if (props.action === 'new-game') {
+      this.seconds = 0;
+      this.minutes = 0;
+      this.hours = 0;
+    }
+    this.t = null;
   }
 
-  componentWillReceiveProps() {
-    if (this.props.text === STOPWATCH_INITIAL_VALUE) {
+  componentWillReceiveProps(newProps) {
+    if (newProps.text === STOPWATCH_INITIAL_VALUE) {
       this.seconds = 0;
       this.minutes = 0;
       this.hours = 0;
     }
   }
 
+  componentDidMount() {
+    this.timer();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.t);
+  }
+
   timer() {
-    setTimeout( ()=> {
-      this.add();
+    this.t = setInterval(() => {
+      this.counter();
     }, 1000)
   }
 
-  add() {
+  counter() {
     const {
       updateStopwatch
     } = this.props;
@@ -46,7 +63,6 @@ class Stopwacht extends Component {
     }
     const text = (this.hours ? (this.hours > 9 ? this.hours : "0" + this.hours) : "00") + ":" + (this.minutes ? (this.minutes > 9 ? this.minutes : "0" + this.minutes) : "00") + ":" + (this.seconds > 9 ? this.seconds : "0" + this.seconds);
     updateStopwatch(text, this.hours, this.minutes, this.seconds);
-    this.timer();
   }
 
   render() {
@@ -65,6 +81,7 @@ class Stopwacht extends Component {
 
 Stopwacht.propTypes = {
   text: React.PropTypes.string.isRequired,
+  action: React.PropTypes.string.isRequired,
   hours: React.PropTypes.number.isRequired,
   minutes: React.PropTypes.number.isRequired,
   seconds: React.PropTypes.number.isRequired
