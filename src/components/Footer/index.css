@@ -1,0 +1,22 @@
+.footer {
+  text-align: right;
+  height: 60px;
+  color: #69ca62;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  font-size: 10px;
+}
+
+.title-footer {
+  line-height: 4;
+  margin-right: 5px;
+}
+
+.title-footer a {
+  color: #69ca62;
+}
+
+.title-footer a:hover {
+  color: #eaead1;
+}
