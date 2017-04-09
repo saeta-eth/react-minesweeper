@@ -3,13 +3,21 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 import Layout from '../containers/Layout';
 import Game from '../containers/Game';
-import Config from '../containers/Config'
+import Menu from '../containers/Menu'
 
 const Routes = () => (
   <BrowserRouter>
     <Layout>
-      <Route exact path="/" component={Config} />
-      <Route exact path="/game" component={Game} />
+      <Route 
+        exact 
+        path="/"
+        component={Menu}
+      />
+      <Route 
+        exact
+        path="/game/:action"
+        component={Game}
+      />
     </Layout>
   </BrowserRouter>
 );

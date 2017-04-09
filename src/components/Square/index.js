@@ -1,13 +1,13 @@
 import React from 'react';
-import Row from '../Row';
+import Col from '../Col';
 
 import './index.css';
 
 const Square = ({rows, cols, grid, handleClick, handleRightClick}) => (
-  <div className="square-mw">
+  <div className="square-container">
     {new Array(rows).fill(0).map((cur, row) => {
       return (
-        <Row
+        <Col
           key={`row-${row}`}
           grid={grid}
           cols={cols}

@@ -1,11 +1,9 @@
 .time-elapsed-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
+
 }
 
 .time-elapsed-container-inner {
   padding: 5px;
-  border: 1px solid black;
+  border: 1px solid #69ca62;
+  color: #69ca62;
 }

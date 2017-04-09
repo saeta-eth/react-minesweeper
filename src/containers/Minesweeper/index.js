@@ -35,6 +35,10 @@ class Minesweeper extends Component {
     );
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log(newProps.grid)
+  }
+
   handleRightClick(col, row, e) {
     e.preventDefault();
     const {
