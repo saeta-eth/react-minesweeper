@@ -5,7 +5,11 @@ import Square from '../../components/Square';
 
 import { leftClickGrid, rightClickGrid, newGrid } from '../../actions/grid';
 import { newStopwatch } from '../../actions/stopwatch'
-import { cellStatus, STOPWATCH_INITIAL_VALUE }  from '../../constants'
+import { 
+  cellStatus, STOPWATCH_INITIAL_VALUE,
+  COL_INTERMEDIATE, ROW_INTERMEDIATE, MINES_INTERMEDIATE,
+  COL_EXPERT, ROW_EXPERT, MINES_EXPERT 
+}  from '../../constants';
 
 class Minesweeper extends Component {
 
@@ -13,6 +17,10 @@ class Minesweeper extends Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.handleRightClick = this.handleRightClick.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.checkIfIamWinner(nextProps.grid);
   }
 
   render() {
@@ -35,20 +43,18 @@ class Minesweeper extends Component {
     );
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log(newProps.grid)
-  }
-
   handleRightClick(col, row, e) {
     e.preventDefault();
     const {
       grid,
       rightClickGrid
     } = this.props;
+
     const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
     const isPressed = grid[col][row].status === cellStatus.CELL_PRESSED;
     const isFlag = grid[col][row].status === cellStatus.CELL_FLAG;
     const isFlagBomb = grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
+    
     if (!isPressed) {
       if (!isFlag && !isFlagBomb) {
         if (isBomb) {
@@ -67,19 +73,68 @@ class Minesweeper extends Component {
     }
   }
 
+  checkIfIamWinner(grid) {
+    const {
+      rows,
+      cols,
+      level,
+      newGrid,
+      newStopwatch
+    } = this.props;
+
+    const TOTAL_CELL = rows * cols;
+    let arrayPressed = [];
+    let arrayFlagBomb = [];
+
+    for (let col in grid) {
+      for (let key in grid[col]) {
+        if(grid[col][key].status === cellStatus.CELL_PRESSED || typeof grid[col][key].status === 'number') {
+          arrayPressed.push(grid[col][key].status);
+        }
+        if(grid[col][key].status === cellStatus.CELL_BOMB_FLAG) {
+          arrayFlagBomb.push(grid[col][key].status);
+        }
+      }
+    }
+
+    if ((arrayPressed.length + arrayFlagBomb.length) === TOTAL_CELL) {
+      alert("You win");
+      switch (level) {
+        case 'Beginner':
+          newGrid(COL_INTERMEDIATE, ROW_INTERMEDIATE, MINES_INTERMEDIATE, 'Intermediate');
+          break;
+        case 'Intermediate':
+          newGrid(COL_EXPERT, ROW_EXPERT, MINES_EXPERT, 'Expert');
+          break;
+        case 'Expert':
+          this.props.history.push('/');
+          break
+        default:
+          this.props.history.push('/');
+      }
+      newStopwatch(STOPWATCH_INITIAL_VALUE);
+    }
+  }
+
   handleClick(col, row) {
     const {
+      cols,
+      rows,
+      mines,
+      level,
       grid,
       leftClickGrid,
       newGrid,
       newStopwatch
     } = this.props;
+
     const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
     const isFlag = grid[col][row].status === cellStatus.CELL_FLAG || grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
+
     if (!isFlag) {
       if(isBomb){
         alert('Game over');
-        newGrid();
+        newGrid(cols, rows, mines, level);
         newStopwatch(STOPWATCH_INITIAL_VALUE);
       } else {
         if (!grid[col][row].visibility) {
@@ -93,6 +148,8 @@ class Minesweeper extends Component {
 Minesweeper.propTypes = {
   rows: React.PropTypes.number.isRequired,
   cols: React.PropTypes.number.isRequired,
+  mines: React.PropTypes.number.isRequired,
+  level: React.PropTypes.string.isRequired,
   grid: React.PropTypes.array.isRequired
 }
 
@@ -107,9 +164,11 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = (state) => {
   return {
-    rows: state.config.rows,
-    cols: state.config.cols,
-    grid: state.grid
+    rows: state.grid.rows,
+    cols: state.grid.cols,
+    mines: state.grid.cols,
+    level: state.grid.level,
+    grid: state.grid.grid
   }
 };
 
