@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import ConfigOptions from '../../components/ConfigOptions';
+import MenuOptions from '../../components/MenuOptions';
 import { newGrid } from '../../actions/grid';
 import { newStopwatch } from '../../actions/stopwatch';
 import{ STOPWATCH_INITIAL_VALUE }  from '../../constants';
@@ -25,19 +25,19 @@ class Config extends Component {
     const option = e.target.value;
 
     if (option === 'R') {
-      history.push('/game');
+      history.push('/game/resume');
     }
     if (option === 'S') {
       newGrid();
       newStopwatch(STOPWATCH_INITIAL_VALUE);
-      history.push('/game');
+      history.push('/game/new-game');
     }
   }
 
   render() {
     return (
       <div className="config-container">
-        <ConfigOptions onSelect={this.onSelect} />
+        <MenuOptions onSelect={this.onSelect} />
       </div>
     );
   }
