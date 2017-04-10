@@ -3,12 +3,13 @@
 
 ## [Live Demo](https://minesweeper-cnzzpdlgff.now.sh)
 
+
 ## Getting Started
 
 First, clone the repository:
 
 ```bash
-git clone https://github.com/fullstackreact/react-yelp-clone.git react-yelp-clone
+git clone https://github.com/slorenzo/minesweeper-challenge.git
 ```
 
 ### Installation
