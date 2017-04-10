@@ -3,7 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 import Layout from '../containers/Layout';
 import Game from '../containers/Game';
-import Menu from '../containers/Menu'
+import ConfigGame from '../containers/ConfigGame';
+import Menu from '../containers/Menu';
 
 const Routes = () => (
   <BrowserRouter>
@@ -12,6 +13,11 @@ const Routes = () => (
         exact 
         path="/"
         component={Menu}
+      />
+      <Route 
+        exact
+        path="/config"
+        component={ConfigGame}
       />
       <Route 
         exact

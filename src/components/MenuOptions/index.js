@@ -2,8 +2,7 @@ import React from 'react';
 
 import './index.css';
 
-
-const ConfigOptions = (props) => (
+const MenuOptions = (props) => (
   <div className="options">
     <button 
       value="R"
@@ -20,4 +19,4 @@ const ConfigOptions = (props) => (
   </div>
 );
 
-export default ConfigOptions;
+export default MenuOptions;

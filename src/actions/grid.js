@@ -18,8 +18,12 @@ export const rightClickGrid = (col, row, value) => {
   };
 }
 
-export const newGrid = () => {
+export const newGrid = (cols, rows, mines, level) => {
   return {
     type: actionTypes.NEW_GRID,
+    cols: cols,
+    rows: rows,
+    mines: mines,
+    level: level
   };
 }

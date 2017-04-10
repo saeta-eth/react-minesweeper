@@ -7,7 +7,9 @@ const actionTypes = createConstants(
   'LEFT_CLICK_CELL',
   'NEW_GRID',
   'NEW_STOPWATCH',
-  'UPDATE_STOPWATCH'
+  'UPDATE_STOPWATCH',
+  'SET_GRID',
+  'SET_MINES_QUANTITY'
 );
 
 const cellStatus = createConstants(
@@ -18,16 +20,32 @@ const cellStatus = createConstants(
   'CELL_BOMB_FLAG'
 );
 
-const ROW_NUMBER = 16;
-const COLS_NUMBER = 16;
-const CANT_POSITIONS = 80;
+const COL_BEGINNER = 8;
+const ROW_BEGINNER = 8;
+const MINES_BEGINNER = 10;
+
+const COL_INTERMEDIATE = 16;
+const ROW_INTERMEDIATE = 16;
+const MINES_INTERMEDIATE = 40;
+
+const COL_EXPERT = 16;
+const ROW_EXPERT = 16;
+const MINES_EXPERT = 50;
+
+
 const STOPWATCH_INITIAL_VALUE = '00:00:00';
 
 export {
   actionTypes,
   cellStatus,
-  ROW_NUMBER,
-  COLS_NUMBER,
-  CANT_POSITIONS,
-  STOPWATCH_INITIAL_VALUE
+  STOPWATCH_INITIAL_VALUE,
+  COL_BEGINNER,
+  ROW_BEGINNER,
+  MINES_BEGINNER,
+  COL_INTERMEDIATE,
+  ROW_INTERMEDIATE,
+  MINES_INTERMEDIATE,
+  COL_EXPERT,
+  ROW_EXPERT,
+  MINES_EXPERT
 }

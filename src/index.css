@@ -14,3 +14,14 @@
 body{
   background-color: #0f222b;
 }
+
+button {
+  display: block;
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  margin: 5px !important;
+  border: 1px solid #69ca62;
+  color: #69ca62;
+  background-color: transparent;
+}

@@ -9,7 +9,7 @@ import{ STOPWATCH_INITIAL_VALUE }  from '../../constants';
 
 import './index.css';
 
-class Config extends Component {
+class Menu extends Component {
   constructor() {
     super();
     this.onSelect = this.onSelect.bind(this);
@@ -30,13 +30,13 @@ class Config extends Component {
     if (option === 'S') {
       newGrid();
       newStopwatch(STOPWATCH_INITIAL_VALUE);
-      history.push('/game/new-game');
+      history.push('/config');
     }
   }
 
   render() {
     return (
-      <div className="config-container">
+      <div className="menu-container">
         <MenuOptions onSelect={this.onSelect} />
       </div>
     );
@@ -50,4 +50,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Config);
+export default connect(null, mapDispatchToProps)(Menu);
