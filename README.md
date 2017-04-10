@@ -40,10 +40,10 @@ Every time you deploy a project, `now` will provide you with a new, unique URL.
 
 ### Technical Decisions.
 
-- I used create-react-app project for build the base scaffold.
-- I wanted to develop this project in React and Redux because I believe this technologies are the newest.
+- I used [create-react-app](https://github.com/facebookincubator/create-react-app) to build the base scaffold.
+- I used [React-Router](https://reacttraining.com/react-router/web) to use different URLs.
 
-### Folder Structure:
+### Folder Structure.
 
 All the application code are in `src` folder:
 - Actions: You will see the redux actions. For more information, visit: [Redux-Actions](http://redux.js.org/docs/basics/Actions.html)
