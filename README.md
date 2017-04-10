@@ -36,6 +36,25 @@ You will see the build errors and lint warnings in the console.
   yarn deploy
 ```
 
+Every time you deploy a project, `now` will provide you with a new, unique URL.
+
+### Technical Decisions.
+
+- I used create-react-app project for build the base scaffold.
+- I wanted to develop this project in React and Redux because I believe this technologies are the newest.
+
+### Folder Structure:
+
+All the application code are in `src` folder:
+- Actions: You will see the redux actions. For more information, visit: [Redux-Actions](http://redux.js.org/docs/basics/Actions.html)
+- Components: You will see stateless components, just JSX and properties are passed as arguments.
+- Constants: You will see all constant variables.
+- Containers: You will see the react-redux connection, it is statefull or it could be if the project were to grow.
+- Reducers: You will see the reduction reducer. For more information visit: [Redux-Reducers](http://redux.js.org/docs/basics/Reducers.html)
+- Routes: You will see all routes.
+- Store: You will see the store settings.
+- Utils: You will see functions that help in the logic of the business and it sort the code.
+
 ## Made with ❤ by
 
 - Sebastian Lorenzo (Javascript developer)
