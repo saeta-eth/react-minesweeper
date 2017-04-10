@@ -21,8 +21,8 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.4.1",
-    "gh-pages": "^0.12.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "now": "^4.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,6 +31,6 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/*",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "now"
   }
 }
