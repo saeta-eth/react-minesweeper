@@ -50,15 +50,15 @@ class Minesweeper extends Component {
       rightClickGrid
     } = this.props;
 
-    const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
+    const isMine = grid[col][row].status === cellStatus.CELL_MINE;
     const isPressed = grid[col][row].status === cellStatus.CELL_PRESSED;
     const isFlag = grid[col][row].status === cellStatus.CELL_FLAG;
-    const isFlagBomb = grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
+    const isFlagMine = grid[col][row].status === cellStatus.CELL_MINE_FLAG;
     
     if (!isPressed) {
-      if (!isFlag && !isFlagBomb) {
-        if (isBomb) {
-          rightClickGrid(col, row, cellStatus.CELL_BOMB_FLAG);
+      if (!isFlag && !isFlagMine) {
+        if (isMine) {
+          rightClickGrid(col, row, cellStatus.CELL_MINE_FLAG);
         } else {
           rightClickGrid(col, row, cellStatus.CELL_FLAG);
         }
@@ -66,8 +66,8 @@ class Minesweeper extends Component {
         if (isFlag) {
           rightClickGrid(col, row, cellStatus.CELL_INITIAL);  
         }
-        if (isFlagBomb) {
-          rightClickGrid(col, row, cellStatus.CELL_BOMB);  
+        if (isFlagMine) {
+          rightClickGrid(col, row, cellStatus.CELL_MINE);  
         }
       }
     }
@@ -84,20 +84,20 @@ class Minesweeper extends Component {
 
     const TOTAL_CELL = rows * cols;
     let arrayPressed = [];
-    let arrayFlagBomb = [];
+    let arrayFlagMine = [];
 
     for (let col in grid) {
       for (let key in grid[col]) {
         if(grid[col][key].status === cellStatus.CELL_PRESSED || typeof grid[col][key].status === 'number') {
           arrayPressed.push(grid[col][key].status);
         }
-        if(grid[col][key].status === cellStatus.CELL_BOMB_FLAG) {
-          arrayFlagBomb.push(grid[col][key].status);
+        if(grid[col][key].status === cellStatus.CELL_MINE_FLAG) {
+          arrayFlagMine.push(grid[col][key].status);
         }
       }
     }
 
-    if ((arrayPressed.length + arrayFlagBomb.length) === TOTAL_CELL) {
+    if ((arrayPressed.length + arrayFlagMine.length) === TOTAL_CELL) {
       alert("You win");
       switch (level) {
         case 'Beginner':
@@ -128,11 +128,11 @@ class Minesweeper extends Component {
       newStopwatch
     } = this.props;
 
-    const isBomb = grid[col][row].status === cellStatus.CELL_BOMB;
-    const isFlag = grid[col][row].status === cellStatus.CELL_FLAG || grid[col][row].status === cellStatus.CELL_BOMB_FLAG;
+    const isMine = grid[col][row].status === cellStatus.CELL_MINE;
+    const isFlag = grid[col][row].status === cellStatus.CELL_FLAG || grid[col][row].status === cellStatus.CELL_MINE_FLAG;
 
     if (!isFlag) {
-      if(isBomb){
+      if(isMine){
         alert('Game over');
         newGrid(cols, rows, mines, level);
         newStopwatch(STOPWATCH_INITIAL_VALUE);

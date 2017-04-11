@@ -3,7 +3,7 @@ import { createConstants } from '../utils/constants.js';
 const actionTypes = createConstants(
   'CHANGE_CONFIG',
   'RIGHT_CLICK_CELL',
-  'RIGHT_CLICK_ON_BOMB',
+  'RIGHT_CLICK_ON_MINE',
   'LEFT_CLICK_CELL',
   'NEW_GRID',
   'NEW_STOPWATCH',
@@ -15,9 +15,9 @@ const actionTypes = createConstants(
 const cellStatus = createConstants(
   'CELL_INITIAL',
   'CELL_PRESSED',
-  'CELL_BOMB',
+  'CELL_MINE',
   'CELL_FLAG',
-  'CELL_BOMB_FLAG'
+  'CELL_MINE_FLAG'
 );
 
 const COL_BEGINNER = 8;

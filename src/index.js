@@ -6,25 +6,25 @@ import configureStore from './store/configure';
 import Routes from './routes';
 
 import { cellStatus, ROW_BEGINNER, COL_BEGINNER, MINES_BEGINNER, STOPWATCH_INITIAL_VALUE }  from './constants';
-import { fillBombGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from './utils/grid';
+import { fillMineGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from './utils/grid';
 
 import 'normalize.css';
 import './index.css';
 
 const POSITION_QUANTITY = MINES_BEGINNER * 2;
 
-const positionBombs = fillRandomBoolean(POSITION_QUANTITY, ROW_BEGINNER);
+const positionMines = fillRandomBoolean(POSITION_QUANTITY, ROW_BEGINNER);
 
 const grid = fillMultiArray(ROW_BEGINNER, COL_BEGINNER, {
   status: cellStatus.CELL_INITIAL,
   visibility: false,
 })
 
-const gridWithBomb = fillBombGrid(grid, positionBombs);
+const gridWithMines = fillMineGrid(grid, positionMines);
 
 const gridWithWarningNumbers = fillWarningNumbers(
-  gridWithBomb,
-  positionBombs
+  gridWithMines,
+  positionMines
 );
 
 const initialState = {

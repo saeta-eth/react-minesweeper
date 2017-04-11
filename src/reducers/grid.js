@@ -1,5 +1,5 @@
 import { actionTypes } from '../constants';
-import { deepClone, findHowMuchExpand, fillBombGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from '../utils/grid';
+import { deepClone, findHowMuchExpand, fillMineGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from '../utils/grid';
 import { cellStatus }  from '../constants';
 
 export default (state = [], action) => {
@@ -18,15 +18,15 @@ export default (state = [], action) => {
       });
     case actionTypes.NEW_GRID:
       const CANT_POSITIONS = action.mines * 2;
-      const positionBombs = fillRandomBoolean(CANT_POSITIONS, action.rows);
+      const positionMines = fillRandomBoolean(CANT_POSITIONS, action.rows);
       const grid = fillMultiArray(action.rows, action.cols, {
         status: cellStatus.CELL_INITIAL,
         visibility: false,
       });
-      const gridWithBomb = fillBombGrid(grid, positionBombs);
+      const gridWithMines = fillMineGrid(grid, positionMines);
       const gridWithWarningNumbers = fillWarningNumbers(
-        gridWithBomb,
-        positionBombs
+        gridWithMines,
+        positionMines
       );
       return Object.assign({}, { 
         grid: gridWithWarningNumbers,
