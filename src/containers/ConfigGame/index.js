@@ -15,7 +15,7 @@ class ConfigGame extends Component {
     this.onSelect.bind(this);
   }
 
-  onSelect = (cols, rows, mines, level) => {
+  onSelect(cols, rows, mines, level) {
     const {
       newGrid
     } = this.props;
@@ -25,16 +25,15 @@ class ConfigGame extends Component {
 
   render() {
     return (
-        <div className='config-minesweeper'>
-          <Config 
-            onSelect={this.onSelect}
-            goBack={<GoBack 
-              href="/"
-              text="Go to Menu"
-            />}
-          />
-
-        </div>
+      <div className='config-minesweeper'>
+        <Config 
+          onSelect={this.onSelect}
+          goBack={<GoBack 
+            href="/"
+            text="Go to Menu"
+          />}
+        />
+      </div>
     );
   }
 }

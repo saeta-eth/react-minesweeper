@@ -1,8 +1,4 @@
-# minesweeper-challenge
-
-
-## [Live Demo](https://minesweeper-cnzzpdlgff.now.sh)
-
+# Minesweeper
 
 ## Getting Started
 
