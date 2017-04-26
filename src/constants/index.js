@@ -17,7 +17,9 @@ const cellStatus = createConstants(
   'CELL_PRESSED',
   'CELL_MINE',
   'CELL_FLAG',
-  'CELL_MINE_FLAG'
+  'CELL_MINE_FLAG',
+  'CELL_QUESTION_MARK',
+  'CELL_MINE_CELL_QUESTION_MARK'
 );
 
 const COL_BEGINNER = 8;
