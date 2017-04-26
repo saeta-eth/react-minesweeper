@@ -1,8 +1,6 @@
 {
-  "name": "minesweeper",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "https://slorenzo.github.io/minesweeper-challenge",
+  "name": "Minesweeper",
+  "version": "1.0.0",
   "dependencies": {
     "normalize.css": "^6.0.0",
     "react": "~15.4.2",
