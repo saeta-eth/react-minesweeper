@@ -45,42 +45,42 @@ const fillWarningNumbers = function fillWarningNumbers(grid, positionMines) {
     if (typeof grid[col-1] !== 'undefined'
       && typeof grid[col-1][row-1] !== 'undefined'
       && grid[col-1][row-1].status !== cellStatus.CELL_MINE) {
-      grid[col-1][row-1].status = typeof grid[col-1][row-1].status === 'number' ? grid[col-1][row-1].status+1  : 1;
+      grid[col-1][row-1].warning++;
     }
     if (typeof grid[col][row-1] !== 'undefined'
       && grid[col][row-1].status !== cellStatus.CELL_MINE) {
-      grid[col][row-1].status = typeof grid[col][row-1].status === 'number' ? grid[col][row-1].status+1 : 1;
+      grid[col][row-1].warning++
     }
     if (typeof grid[col+1] !== 'undefined'
       && typeof grid[col+1][row-1] !== 'undefined'
       && grid[col+1][row-1].status !== cellStatus.CELL_MINE) { 
-      grid[col+1][row-1].status = typeof grid[col+1][row-1].status === 'number' ? grid[col+1][row-1].status+1 : 1;
+      grid[col+1][row-1].warning++;
     }
     // MIDDLE
     if (typeof grid[col-1] !== 'undefined'
       && typeof grid[col-1][row] !== 'undefined'
       && grid[col-1][row].status !== cellStatus.CELL_MINE) {
-      grid[col-1][row].status = typeof grid[col-1][row].status === 'number' ? grid[col-1][row].status+1 : 1;
+      grid[col-1][row].warning++;
     }
     if (typeof grid[col+1] !== 'undefined'
       && typeof grid[col+1][row] !== 'undefined'
       && grid[col+1][row].status !== cellStatus.CELL_MINE) {
-      grid[col+1][row].status = typeof grid[col+1][row].status === 'number' ? grid[col+1][row].status+1 : 1;
+      grid[col+1][row].warning++;
     }
     // BOTTOM
     if (typeof grid[col-1] !== 'undefined'
       && typeof grid[col-1][row+1] !== 'undefined'
       && grid[col-1][row+1].status !== cellStatus.CELL_MINE) {
-      grid[col-1][row+1].status = typeof grid[col-1][row+1].status === 'number' ? grid[col-1][row+1].status+1 : 1;
+      grid[col-1][row+1].warning++;
     }
     if (typeof grid[col][row+1] !== 'undefined'
       && grid[col][row+1].status !== cellStatus.CELL_MINE) {
-      grid[col][row+1].status = typeof grid[col][row+1].status === 'number' ? grid[col][row+1].status+1 : 1;
+      grid[col][row+1].warning++;
     }
     if (typeof grid[col+1] !== 'undefined'
       && typeof grid[col+1][row+1] !== 'undefined'
       && grid[col+1][row+1].status !== cellStatus.CELL_MINE) {
-      grid[col+1][row+1].status = typeof grid[col+1][row+1].status === 'number' ? grid[col+1][row+1].status+1 : 1;
+      grid[col+1][row+1].warning++;
     }
   }
   return grid;
@@ -94,7 +94,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col-1][row-1].status !== cellStatus.CELL_MINE 
     && grid[col-1][row-1].status !== cellStatus.CELL_FLAG
     && grid[col-1][row-1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col-1][row-1].status === 'number') {
+    if (typeof grid[col-1][row-1].warning > 0) {
       grid[col-1][row-1].visibility = true;
     } else {
       grid[col-1][row-1].status = value;
@@ -106,7 +106,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col][row-1].status !== cellStatus.CELL_MINE
     && grid[col][row-1].status !== cellStatus.CELL_FLAG
     && grid[col][row-1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col][row-1].status === 'number') {
+    if (grid[col][row-1].warning > 0) {
       grid[col][row-1].visibility = true;
     } else {
       grid[col][row-1].status = value;
@@ -119,7 +119,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col+1][row-1].status !== cellStatus.CELL_MINE
     && grid[col+1][row-1].status !== cellStatus.CELL_FLAG
     && grid[col+1][row-1].status !== cellStatus.CELL_MINE_FLAG) { 
-    if (typeof grid[col+1][row-1].status === 'number') {
+    if (grid[col+1][row-1].warning > 0) {
       grid[col+1][row-1].visibility = true;
     } else {
       grid[col+1][row-1].status = value;
@@ -133,7 +133,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col-1][row].status !== cellStatus.CELL_MINE
     && grid[col-1][row].status !== cellStatus.CELL_FLAG
     && grid[col-1][row].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col-1][row].status === 'number') {
+    if (grid[col-1][row].warning > 0) {
       grid[col-1][row].visibility = true;
     } else {
       grid[col-1][row].status = value;
@@ -146,7 +146,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col+1][row].status !== cellStatus.CELL_MINE
     && grid[col+1][row].status !== cellStatus.CELL_FLAG
     && grid[col+1][row].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col+1][row].status === 'number') {
+    if (grid[col+1][row].warning > 0) {
       grid[col+1][row].visibility = true;
     } else {
       grid[col+1][row].status = value;
@@ -160,7 +160,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col-1][row+1].status !== cellStatus.CELL_MINE
     && grid[col-1][row+1].status !== cellStatus.CELL_FLAG
     && grid[col-1][row+1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col-1][row+1].status === 'number') {
+    if (grid[col-1][row+1].warning > 0) {
       grid[col-1][row+1].visibility = true;
     } else {
       grid[col-1][row+1].status = value;
@@ -172,7 +172,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col][row+1].status !== cellStatus.CELL_MINE
     && grid[col][row+1].status !== cellStatus.CELL_FLAG
     && grid[col][row+1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col][row+1].status === 'number') {
+    if (grid[col][row+1].warning > 0) {
       grid[col][row+1].visibility = true;
     } else {
       grid[col][row+1].status = value;
@@ -185,7 +185,7 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col+1][row+1].status !== cellStatus.CELL_MINE
     && grid[col+1][row+1].status !== cellStatus.CELL_FLAG
     && grid[col+1][row+1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col+1][row+1].status === 'number') {
+    if (grid[col+1][row+1].warning > 0) {
       grid[col+1][row+1].visibility = true;
     } else {
       grid[col+1][row+1].status = value;

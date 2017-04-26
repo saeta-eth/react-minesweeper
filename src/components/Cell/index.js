@@ -10,7 +10,7 @@ const Cell = ({ row, col, grid, handleClick, handleRightClick }) => (
     onClick={handleClick.bind(this, row, col)}
     onContextMenu={handleRightClick.bind(this, row, col)}
   >
-    { grid[row][col].visibility ? grid[row][col].status : '' }
+    { grid[row][col].visibility  ? grid[row][col].warning : '' }
     { grid[row][col].status === cellStatus.CELL_FLAG || grid[row][col].status === cellStatus.CELL_MINE_FLAG ? ReactEmoji.emojify(':triangular_flag_on_post:') : ''}
   </div>
 );

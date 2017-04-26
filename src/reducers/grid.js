@@ -1,12 +1,13 @@
-import { actionTypes } from '../constants';
+import { actionTypes, cellStatus } from '../constants';
 import { deepClone, findHowMuchExpand, fillMineGrid, fillMultiArray, fillWarningNumbers, fillRandomBoolean } from '../utils/grid';
-import { cellStatus }  from '../constants';
 
 export default (state = [], action) => {
   let previousState = deepClone(state instanceof Array ? state: state.grid);
   switch (action.type) {
     case actionTypes.LEFT_CLICK_CELL:
+      console.log('status', previousState[action.col][action.row]);
       previousState[action.col][action.row].status = action.value;
+      previousState[action.col][action.row].visibility = true;
       previousState = findHowMuchExpand(previousState, action.col, action.row, action.value);
       return Object.assign(state, {
         grid: previousState
@@ -20,8 +21,9 @@ export default (state = [], action) => {
       const CANT_POSITIONS = action.mines * 2;
       const positionMines = fillRandomBoolean(CANT_POSITIONS, action.rows);
       const grid = fillMultiArray(action.rows, action.cols, {
+        warning: 0,
         status: cellStatus.CELL_INITIAL,
-        visibility: false,
+        visibility: false
       });
       const gridWithMines = fillMineGrid(grid, positionMines);
       const gridWithWarningNumbers = fillWarningNumbers(
