@@ -1,0 +1,5 @@
+# Changelog Minesweeper
+
+## 1.0.0
+
+* Initial version
