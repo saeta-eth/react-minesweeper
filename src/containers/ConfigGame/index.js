@@ -15,7 +15,7 @@ class ConfigGame extends Component {
     this.onSelect.bind(this);
   }
 
-  onSelect(cols, rows, mines, level) {
+  onSelect = (cols, rows, mines, level) => {
     const {
       newGrid
     } = this.props;
