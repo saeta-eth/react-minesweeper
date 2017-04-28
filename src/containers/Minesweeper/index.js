@@ -23,25 +23,6 @@ class Minesweeper extends Component {
     this.checkIfIamWinner(nextProps.grid);
   }
 
-  render() {
-    const {
-      rows,
-      cols,
-      grid
-    } = this.props;
-
-    return (
-      <div>
-        <Square
-          grid={grid}
-          rows={rows} 
-          cols={cols}
-          handleClick={this.handleClick}
-          handleRightClick={this.handleRightClick}
-        />
-      </div>
-    );
-  }
 
   handleRightClick(col, row, e) {
     e.preventDefault();
@@ -50,26 +31,58 @@ class Minesweeper extends Component {
       rightClickGrid
     } = this.props;
 
-    const isMine = grid[col][row].status === cellStatus.CELL_MINE;
     const isPressed = grid[col][row].status === cellStatus.CELL_PRESSED;
+    const isInitial = grid[col][row].status === cellStatus.CELL_INITIAL;
+    const isMine = grid[col][row].status === cellStatus.CELL_MINE;
     const isFlag = grid[col][row].status === cellStatus.CELL_FLAG;
     const isFlagMine = grid[col][row].status === cellStatus.CELL_MINE_FLAG;
+    const isQuestionMark = grid[col][row].status === cellStatus.CELL_QUESTION_MARK;
+    const isQuestionMarkMine = grid[col][row].status === cellStatus.CELL_MINE_CELL_QUESTION_MARK;
     
     if (!isPressed) {
-      if (!isFlag && !isFlagMine) {
-        if (isMine) {
-          rightClickGrid(col, row, cellStatus.CELL_MINE_FLAG);
-        } else {
-          rightClickGrid(col, row, cellStatus.CELL_FLAG);
-        }
-      } else {
-        if (isFlag) {
-          rightClickGrid(col, row, cellStatus.CELL_INITIAL);  
-        }
-        if (isFlagMine) {
-          rightClickGrid(col, row, cellStatus.CELL_MINE);  
-        }
+      if (isInitial) {
+        rightClickGrid(col, row, cellStatus.CELL_FLAG);
       }
+      if (isMine) {
+        rightClickGrid(col, row, cellStatus.CELL_MINE_FLAG);
+      }
+      if (isFlag) {
+        rightClickGrid(col, row, cellStatus.CELL_QUESTION_MARK);
+      }
+      if (isFlagMine) {
+        rightClickGrid(col, row, cellStatus.CELL_MINE_CELL_QUESTION_MARK);
+      }
+      if (isQuestionMark) {
+        rightClickGrid(col, row, cellStatus.CELL_INITIAL);
+      }
+      if (isQuestionMarkMine) {
+        rightClickGrid(col, row, cellStatus.CELL_MINE);
+      }
+    }
+  }
+
+  handleClick(col, row) {
+    const {
+      cols,
+      rows,
+      mines,
+      level,
+      grid,
+      leftClickGrid,
+      newGrid,
+      newStopwatch
+    } = this.props;
+
+    const isInitial = grid[col][row].status === cellStatus.CELL_INITIAL;
+    const isMine = grid[col][row].status === cellStatus.CELL_MINE;
+
+    if (isInitial) {
+      leftClickGrid(col, row, cellStatus.CELL_PRESSED);
+    }
+    if(isMine){
+      alert('Game over');
+      newGrid(cols, rows, mines, level);
+      newStopwatch(STOPWATCH_INITIAL_VALUE);
     }
   }
 
@@ -88,7 +101,7 @@ class Minesweeper extends Component {
 
     for (let col in grid) {
       for (let key in grid[col]) {
-        if(grid[col][key].status === cellStatus.CELL_PRESSED || typeof grid[col][key].status === 'number') {
+        if(grid[col][key].status === cellStatus.CELL_PRESSED) {
           arrayPressed.push(grid[col][key].status);
         }
         if(grid[col][key].status === cellStatus.CELL_MINE_FLAG) {
@@ -116,32 +129,24 @@ class Minesweeper extends Component {
     }
   }
 
-  handleClick(col, row) {
+  render() {
     const {
-      cols,
       rows,
-      mines,
-      level,
-      grid,
-      leftClickGrid,
-      newGrid,
-      newStopwatch
+      cols,
+      grid
     } = this.props;
 
-    const isMine = grid[col][row].status === cellStatus.CELL_MINE;
-    const isFlag = grid[col][row].status === cellStatus.CELL_FLAG || grid[col][row].status === cellStatus.CELL_MINE_FLAG;
-
-    if (!isFlag) {
-      if(isMine){
-        alert('Game over');
-        newGrid(cols, rows, mines, level);
-        newStopwatch(STOPWATCH_INITIAL_VALUE);
-      } else {
-        if (!grid[col][row].visibility) {
-          leftClickGrid(col, row, cellStatus.CELL_PRESSED);
-        }
-      }
-    }
+    return (
+      <div>
+        <Square
+          grid={grid}
+          rows={rows} 
+          cols={cols}
+          handleClick={this.handleClick}
+          handleRightClick={this.handleRightClick}
+        />
+      </div>
+    );
   }
 }
 

@@ -17,8 +17,7 @@ const positionMines = fillRandomBoolean(POSITION_QUANTITY, ROW_BEGINNER);
 
 const grid = fillMultiArray(ROW_BEGINNER, COL_BEGINNER, {
   warning: 0,
-  status: cellStatus.CELL_INITIAL,
-  visibility: false,
+  status: cellStatus.CELL_INITIAL
 })
 
 const gridWithMines = fillMineGrid(grid, positionMines);

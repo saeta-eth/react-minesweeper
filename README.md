@@ -1,5 +1,7 @@
 # Minesweeper
 
+> Minesweeper built on React and Redux.
+
 ## Getting Started
 
 First, clone the repository:

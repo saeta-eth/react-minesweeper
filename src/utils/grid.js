@@ -94,10 +94,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col-1][row-1].status !== cellStatus.CELL_MINE 
     && grid[col-1][row-1].status !== cellStatus.CELL_FLAG
     && grid[col-1][row-1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (typeof grid[col-1][row-1].warning > 0) {
-      grid[col-1][row-1].visibility = true;
-    } else {
-      grid[col-1][row-1].status = value;
+    grid[col-1][row-1].status = value;
+    if (grid[col-1][row-1].warning === 0) {
       findHowMuchExpand(grid, col-1, row-1, value);
     }
   }
@@ -106,10 +104,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col][row-1].status !== cellStatus.CELL_MINE
     && grid[col][row-1].status !== cellStatus.CELL_FLAG
     && grid[col][row-1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (grid[col][row-1].warning > 0) {
-      grid[col][row-1].visibility = true;
-    } else {
-      grid[col][row-1].status = value;
+    grid[col][row-1].status = value;
+    if (grid[col][row-1].warning === 0) {
       findHowMuchExpand(grid, col, row-1, value);
     }
   }
@@ -119,10 +115,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col+1][row-1].status !== cellStatus.CELL_MINE
     && grid[col+1][row-1].status !== cellStatus.CELL_FLAG
     && grid[col+1][row-1].status !== cellStatus.CELL_MINE_FLAG) { 
-    if (grid[col+1][row-1].warning > 0) {
-      grid[col+1][row-1].visibility = true;
-    } else {
-      grid[col+1][row-1].status = value;
+    grid[col+1][row-1].status = value;
+    if (grid[col+1][row-1].warning === 0) {
       findHowMuchExpand(grid, col+1, row-1, value);
     }
   }
@@ -133,10 +127,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col-1][row].status !== cellStatus.CELL_MINE
     && grid[col-1][row].status !== cellStatus.CELL_FLAG
     && grid[col-1][row].status !== cellStatus.CELL_MINE_FLAG) {
-    if (grid[col-1][row].warning > 0) {
-      grid[col-1][row].visibility = true;
-    } else {
-      grid[col-1][row].status = value;
+    grid[col-1][row].status = value
+    if (grid[col-1][row].warning === 0) {
       findHowMuchExpand(grid, col-1, row, value);
     }
   }
@@ -146,10 +138,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col+1][row].status !== cellStatus.CELL_MINE
     && grid[col+1][row].status !== cellStatus.CELL_FLAG
     && grid[col+1][row].status !== cellStatus.CELL_MINE_FLAG) {
-    if (grid[col+1][row].warning > 0) {
-      grid[col+1][row].visibility = true;
-    } else {
-      grid[col+1][row].status = value;
+    grid[col+1][row].status = value;
+    if (grid[col+1][row].warning === 0) {
       findHowMuchExpand(grid, col+1, row, value);
     }
   }
@@ -160,10 +150,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col-1][row+1].status !== cellStatus.CELL_MINE
     && grid[col-1][row+1].status !== cellStatus.CELL_FLAG
     && grid[col-1][row+1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (grid[col-1][row+1].warning > 0) {
-      grid[col-1][row+1].visibility = true;
-    } else {
-      grid[col-1][row+1].status = value;
+    grid[col-1][row+1].status = value;
+    if (grid[col-1][row+1].warning === 0) {
       findHowMuchExpand(grid, col-1, row+1, value);
     }
   }
@@ -172,10 +160,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col][row+1].status !== cellStatus.CELL_MINE
     && grid[col][row+1].status !== cellStatus.CELL_FLAG
     && grid[col][row+1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (grid[col][row+1].warning > 0) {
-      grid[col][row+1].visibility = true;
-    } else {
-      grid[col][row+1].status = value;
+    grid[col][row+1].status = value;
+    if (grid[col][row+1].warning === 0) {
       findHowMuchExpand(grid, col, row+1, value);
     }
   }
@@ -185,10 +171,8 @@ const findHowMuchExpand = function findHowMuchExpand(grid, col, row, value) {
     && grid[col+1][row+1].status !== cellStatus.CELL_MINE
     && grid[col+1][row+1].status !== cellStatus.CELL_FLAG
     && grid[col+1][row+1].status !== cellStatus.CELL_MINE_FLAG) {
-    if (grid[col+1][row+1].warning > 0) {
-      grid[col+1][row+1].visibility = true;
-    } else {
-      grid[col+1][row+1].status = value;
+    grid[col+1][row+1].status = value;
+    if (grid[col+1][row+1].warning === 0) {
       findHowMuchExpand(grid, col+1, row+1, value);
     }
   }
