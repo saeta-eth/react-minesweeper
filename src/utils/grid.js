@@ -26,7 +26,7 @@ const fillMultiArray = function fillMultiArray(ROW_NUMBER, COLS_NUMBER, defaultV
 }
 
 const fillMineGrid = function fillMineGrid(grid, positionMines) {
-  for (let mine = 0; mine < (positionMines.length / 2); mine += 2) {
+  for (let mine = 0; mine < positionMines.length; mine += 2) {
     const position = positionMines.slice(mine, mine + 2);
     const col = position[0];
     const row = position[1];
@@ -37,7 +37,7 @@ const fillMineGrid = function fillMineGrid(grid, positionMines) {
 
 const fillWarningNumbers = function fillWarningNumbers(grid, positionMines) {
   // TODO: http://stackoverflow.com/a/2036743/1741027
-  for (let mine = 0; mine < (positionMines.length / 2); mine += 2) {
+  for (let mine = 0; mine < positionMines.length; mine += 2) {
     const position = positionMines.slice(mine, mine + 2);
     const col = position[0];
     const row = position[1];

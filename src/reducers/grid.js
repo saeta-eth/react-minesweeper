@@ -17,8 +17,8 @@ export default (state = [], action) => {
         grid: previousState
       });
     case actionTypes.NEW_GRID:
-      const CANT_POSITIONS = action.mines * 2;
-      const positionMines = fillRandomBoolean(CANT_POSITIONS, action.rows);
+      const POSITION_QUANTITY = action.mines * 2;
+      const positionMines = fillRandomBoolean(POSITION_QUANTITY, action.rows);
       const grid = fillMultiArray(action.rows, action.cols, {
         warning: 0,
         status: cellStatus.CELL_INITIAL

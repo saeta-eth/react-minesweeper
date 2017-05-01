@@ -171,7 +171,7 @@ const mapStateToProps = (state) => {
   return {
     rows: state.grid.rows,
     cols: state.grid.cols,
-    mines: state.grid.cols,
+    mines: state.grid.mines,
     level: state.grid.level,
     grid: state.grid.grid
   }
