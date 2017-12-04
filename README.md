@@ -7,7 +7,7 @@
 First, clone the repository:
 
 ```bash
-git clone https://github.com/slorenzo/minesweeper-challenge.git
+git clone https://github.com/slorenzo/react-minesweeper.git
 ```
 
 ### Installation
