@@ -4,7 +4,7 @@ import './index.css';
 
 const Header = () => (
   <div className="header">
-    <h2 className="title">Minesweeper Challenge</h2>
+    <h2 className="title">Minesweeper</h2>
   </div>
 );
 
