@@ -3,7 +3,7 @@
 > Minesweeper built on React and Redux.
 
 <p align="center">
-  <img src="https://github.com/slorenzo/react-stopwatch/blob/master/media/minesweeper.gif?raw=true" alt="Demo"/>
+  <img src="https://github.com/slorenzo/react-minesweeper/blob/master/media/minesweeper.gif?raw=true" alt="Demo"/>
 </p>
 
 ## Getting Started
