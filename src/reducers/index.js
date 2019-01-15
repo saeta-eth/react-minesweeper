@@ -1,10 +1,11 @@
-import grid from './grid.js';
+import { combineReducers } from 'redux';
+
+import grid from './grid';
 import stopwatch from './stopwatch';
-import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
   grid,
-  stopwatch
+  stopwatch,
 });
 
 export default rootReducer;

@@ -1,26 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-class Layout extends React.Component {
-  render() {
-    const {
-      children
-    } = this.props;
-    return (
-      <div>
-        <Header />
-        <main>
-          {children}
-        </main>
-        <Footer />
-      </div>
-    );
-  };
-};
+const Layout = ({ children }) => (
+  <React.Fragment>
+    <Header />
+    <main>{children}</main>
+    <Footer />
+  </React.Fragment>
+);
 
 Layout.propTypes = {
-  children: React.PropTypes.node,
+  children: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default Layout;

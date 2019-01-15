@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Minesweeper from '../Minesweeper';
 import Stopwatch from '../Stopwatch';
 
 import GoBack from '../../components/GoBack';
 
-import './index.css';
-
-class Game extends Component {
-
+class Game extends PureComponent {
   render() {
     return (
-      <div className="app-container">
-        <div className='header-minesweeper'>
-          <GoBack 
-            href="/"
-            text="Go to Menu"
-          />
-          <Stopwatch action={this.props.match.params.action} />
-        </div>
+      <React.Fragment>
+        <GoBack href="/" text="Go to Menu" />
+        <Stopwatch action={this.props.match.params.action} />
         <Minesweeper />
-      </div>
+      </React.Fragment>
     );
   }
 }

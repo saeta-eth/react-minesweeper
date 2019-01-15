@@ -1,51 +1,44 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import GoBack from '../../components/GoBack';
 import Config from '../../components/Config';
 
-import { newGrid } from '../../actions/grid';
-
-import './index.css';
+import { newGrid as newGridAction } from '../../actions/grid';
 
 class ConfigGame extends Component {
-  constructor() {
-    super()
-    this.onSelect.bind(this);
-  }
-
   onSelect = (cols, rows, mines, level) => {
-    const {
-      newGrid
-    } = this.props;
+    const { newGrid, history } = this.props;
     newGrid(cols, rows, mines, level);
-    this.props.history.push('/game/new-game');
-  }
+    history.push('/game/new-game');
+  };
 
   render() {
     return (
-      <div className='config-minesweeper'>
-        <Config 
-          onSelect={this.onSelect}
-          goBack={<GoBack 
-            href="/"
-            text="Go to Menu"
-          />}
-        />
-      </div>
+      <Config
+        onSelect={this.onSelect}
+        goBack={<GoBack href="/" text="Go to Menu" />}
+      />
     );
   }
 }
 
 ConfigGame.propTypes = {
-  newGrid: React.PropTypes.func.isRequired,
-}
+  newGrid: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {
-    newGrid: bindActionCreators(newGrid, dispatch)
+    newGrid: bindActionCreators(newGridAction, dispatch),
   };
 }
 
-export default connect(null, mapDispatchToProps)(ConfigGame);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ConfigGame);

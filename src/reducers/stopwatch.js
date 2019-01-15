@@ -1,22 +1,37 @@
 import { actionTypes } from '../constants';
 
-export default (state = [], action) => {
+const stopwatch = (state = [], action) => {
+  const { text, hours, minutes, seconds } = action;
+
   switch (action.type) {
-    case actionTypes.NEW_STOPWATCH:
-      return Object.assign({}, {
-        text: action.text,
-        hours: action.hours,
-        minutes: action.minutes,
-        seconds: action.seconds
-      });
-    case actionTypes.UPDATE_STOPWATCH:
-      return Object.assign({}, {
-        text: action.text,
-        hours: action.hours,
-        minutes: action.minutes,
-        seconds: action.seconds
-      });
-    default:
+    case actionTypes.NEW_STOPWATCH: {
+      return Object.assign(
+        {},
+        {
+          text,
+          hours,
+          minutes,
+          seconds,
+        }
+      );
+    }
+
+    case actionTypes.UPDATE_STOPWATCH: {
+      return Object.assign(
+        {},
+        {
+          text,
+          hours,
+          minutes,
+          seconds,
+        }
+      );
+    }
+
+    default: {
       return state;
+    }
   }
 };
+
+export default stopwatch;

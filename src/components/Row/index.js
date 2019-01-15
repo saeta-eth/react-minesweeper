@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Row from '../Row';
+import Cell from '../Cell';
 
-const Square = ({ rows, cols, grid, handleClick, handleRightClick }) => (
-  <div className="square-container">
-    {new Array(rows).fill(0).map((cur, row) => (
-      <Row
-        key={`row-${row}`}
+const Row = ({ cols, row, grid, handleClick, handleRightClick }) => (
+  <div className="row-mw">
+    {new Array(cols).fill(0).map((cur, col) => (
+      <Cell
+        key={`${row}-${col}`}
         grid={grid}
-        cols={cols}
         row={row}
+        col={col}
         handleClick={handleClick}
         handleRightClick={handleRightClick}
       />
@@ -18,12 +18,12 @@ const Square = ({ rows, cols, grid, handleClick, handleRightClick }) => (
   </div>
 );
 
-Square.propTypes = {
-  rows: PropTypes.number.isRequired,
+Row.propTypes = {
   cols: PropTypes.number.isRequired,
+  row: PropTypes.number.isRequired,
   grid: PropTypes.instanceOf(Array).isRequired,
   handleClick: PropTypes.func.isRequired,
   handleRightClick: PropTypes.func.isRequired,
 };
 
-export default Square;
+export default Row;
