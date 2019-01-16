@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Normalize } from 'styled-normalize';
 
+import GlobalStyle from './global-style';
 import configureStore from './store/configure';
 import Routes from './routes';
 
@@ -53,6 +54,7 @@ const store = configureStore(initialState);
 ReactDOM.render(
   <Provider store={store}>
     <Normalize />
+    <GlobalStyle />
     <Routes />
   </Provider>,
   document.getElementById('root')
