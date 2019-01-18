@@ -6,8 +6,6 @@ const actionTypes = createConstants(
   'RIGHT_CLICK_ON_MINE',
   'LEFT_CLICK_CELL',
   'NEW_GRID',
-  'NEW_STOPWATCH',
-  'UPDATE_STOPWATCH',
   'SET_GRID',
   'SET_MINES_QUANTITY'
 );
@@ -21,8 +19,6 @@ const cellStatus = createConstants(
   'CELL_QUESTION_MARK',
   'CELL_MINE_CELL_QUESTION_MARK'
 );
-
-const STOPWATCH_INITIAL_VALUE = '00:00:00';
 
 const COL_BEGINNER = 8;
 const ROW_BEGINNER = 8;
@@ -39,7 +35,6 @@ const MINES_EXPERT = 50;
 export {
   actionTypes,
   cellStatus,
-  STOPWATCH_INITIAL_VALUE,
   COL_BEGINNER,
   ROW_BEGINNER,
   MINES_BEGINNER,
