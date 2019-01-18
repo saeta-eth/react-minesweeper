@@ -1,29 +1,25 @@
 import { actionTypes } from '../constants';
 
-export const leftClickGrid = (col, row, value) => {
-  return {
-    type: actionTypes.LEFT_CLICK_CELL,
-    col: col,
-    row: row,
-    value: value
-  };
-}
+const leftClickGrid = (col, row, value) => ({
+  type: actionTypes.LEFT_CLICK_CELL,
+  col,
+  row,
+  value,
+});
 
-export const rightClickGrid = (col, row, value) => {
-  return {
-    type: actionTypes.RIGHT_CLICK_CELL,
-    col: col,
-    row: row,
-    value: value
-  };
-}
+const rightClickGrid = (col, row, value) => ({
+  type: actionTypes.RIGHT_CLICK_CELL,
+  col,
+  row,
+  value,
+});
 
-export const newGrid = (cols, rows, mines, level) => {
-  return {
-    type: actionTypes.NEW_GRID,
-    cols: cols,
-    rows: rows,
-    mines: mines,
-    level: level
-  };
-}
+const newGrid = (cols, rows, mines, level) => ({
+  type: actionTypes.NEW_GRID,
+  cols,
+  rows,
+  mines,
+  level,
+});
+
+export { newGrid, rightClickGrid, leftClickGrid };

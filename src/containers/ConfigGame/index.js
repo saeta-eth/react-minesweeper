@@ -1,51 +1,50 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Div100vh from 'react-div-100vh';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import GoBack from '../../components/GoBack';
+import { newGrid as newGridAction } from '../../actions/grid';
+
 import Config from '../../components/Config';
-
-import { newGrid } from '../../actions/grid';
-
-import './index.css';
+import Title from '../../components/Shared/Title';
+import Container from '../../components/Shared/Title/Container';
+import Footer from '../../components/Footer';
 
 class ConfigGame extends Component {
-  constructor() {
-    super()
-    this.onSelect.bind(this);
-  }
-
   onSelect = (cols, rows, mines, level) => {
-    const {
-      newGrid
-    } = this.props;
+    const { newGrid, history } = this.props;
     newGrid(cols, rows, mines, level);
-    this.props.history.push('/game/new-game');
-  }
+    history.push('/game');
+  };
 
   render() {
     return (
-      <div className='config-minesweeper'>
-        <Config 
-          onSelect={this.onSelect}
-          goBack={<GoBack 
-            href="/"
-            text="Go to Menu"
-          />}
-        />
-      </div>
+      <Div100vh>
+        <Container>
+          <Title>Minesweeper</Title>
+          <Config onSelect={this.onSelect} />
+          <Footer />
+        </Container>
+      </Div100vh>
     );
   }
 }
 
 ConfigGame.propTypes = {
-  newGrid: React.PropTypes.func.isRequired,
-}
+  newGrid: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return {
-    newGrid: bindActionCreators(newGrid, dispatch)
+    newGrid: bindActionCreators(newGridAction, dispatch),
   };
 }
 
-export default connect(null, mapDispatchToProps)(ConfigGame);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ConfigGame);

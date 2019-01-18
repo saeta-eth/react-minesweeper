@@ -1,4 +1,4 @@
-import { createConstants } from '../utils/constants.js';
+import createConstants from '../utils/constants';
 
 const actionTypes = createConstants(
   'CHANGE_CONFIG',
@@ -6,8 +6,6 @@ const actionTypes = createConstants(
   'RIGHT_CLICK_ON_MINE',
   'LEFT_CLICK_CELL',
   'NEW_GRID',
-  'NEW_STOPWATCH',
-  'UPDATE_STOPWATCH',
   'SET_GRID',
   'SET_MINES_QUANTITY'
 );
@@ -34,13 +32,9 @@ const COL_EXPERT = 16;
 const ROW_EXPERT = 16;
 const MINES_EXPERT = 50;
 
-
-const STOPWATCH_INITIAL_VALUE = '00:00:00';
-
 export {
   actionTypes,
   cellStatus,
-  STOPWATCH_INITIAL_VALUE,
   COL_BEGINNER,
   ROW_BEGINNER,
   MINES_BEGINNER,
@@ -49,5 +43,5 @@ export {
   MINES_INTERMEDIATE,
   COL_EXPERT,
   ROW_EXPERT,
-  MINES_EXPERT
-}
+  MINES_EXPERT,
+};

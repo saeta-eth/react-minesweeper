@@ -1,22 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import './index.css';
+import Button from '../Shared/Button';
 
-const MenuOptions = (props) => (
-  <div className="options">
-    <button 
-      value="R"
-      onClick={props.onSelect}
-      type="button">
-        Resume
-    </button>
-    <button 
-      value="S"
-      onClick={props.onSelect}
-      type="button">
-        Start a new game
-    </button>
+const MenuOptions = ({ onSelect }) => (
+  <div>
+    <Button onClick={onSelect} type="button">
+      Start
+    </Button>
   </div>
 );
+
+MenuOptions.propTypes = {
+  onSelect: PropTypes.func.isRequired,
+};
 
 export default MenuOptions;

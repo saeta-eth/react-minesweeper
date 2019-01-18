@@ -1,53 +1,49 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import Div100vh from 'react-div-100vh';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { newGrid as newGridAction } from '../../actions/grid';
+
 import MenuOptions from '../../components/MenuOptions';
-import { newGrid } from '../../actions/grid';
-import { newStopwatch } from '../../actions/stopwatch';
-import{ STOPWATCH_INITIAL_VALUE }  from '../../constants';
+import Title from '../../components/Shared/Title';
+import Container from '../../components/Shared/Title/Container';
+import Footer from '../../components/Footer';
 
-import './index.css';
+class Menu extends PureComponent {
+  onSelect = () => {
+    const { history, newGrid } = this.props;
 
-class Menu extends Component {
-  constructor() {
-    super();
-    this.onSelect = this.onSelect.bind(this);
-  }
-
-  onSelect(e){
-    const {
-      history,
-      newGrid,
-      newStopwatch
-    } = this.props;
-
-    const option = e.target.value;
-
-    if (option === 'R') {
-      history.push('/game/resume');
-    }
-    if (option === 'S') {
-      newGrid();
-      newStopwatch(STOPWATCH_INITIAL_VALUE);
-      history.push('/config');
-    }
-  }
+    newGrid();
+    history.push('/config');
+  };
 
   render() {
     return (
-      <div className="menu-container">
-        <MenuOptions onSelect={this.onSelect} />
-      </div>
+      <Div100vh>
+        <Container>
+          <Title>Minesweeper</Title>
+          <MenuOptions onSelect={this.onSelect} />
+          <Footer />
+        </Container>
+      </Div100vh>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    newGrid: bindActionCreators(newGrid, dispatch),
-    newStopwatch: bindActionCreators(newStopwatch, dispatch)
-  };
-}
+Menu.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  newGrid: PropTypes.func.isRequired,
+};
 
-export default connect(null, mapDispatchToProps)(Menu);
+const mapDispatchToProps = dispatch => ({
+  newGrid: bindActionCreators(newGridAction, dispatch),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Menu);
