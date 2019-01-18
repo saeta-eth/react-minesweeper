@@ -1,22 +1,39 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunkMiddleware from 'redux-thunk';
 
+import * as actionCreators from '../actions';
 import rootReducer from '../reducers';
 
+import { loadState, saveState } from '../utils/local-storage';
+
+const isDev = process.env.NODE_ENV === 'development';
+
 const configure = initialState => {
-  const persistedState = localStorage.getItem('reduxState')
-    ? JSON.parse(localStorage.getItem('reduxState'))
-    : initialState;
+  const persistedState = loadState(initialState);
+
+  const composeEnhancers = composeWithDevTools({
+    actionCreators,
+    trace: true,
+    traceLimit: 25,
+  });
+
+  const middlewares = [thunkMiddleware];
+
+  if (isDev) {
+    // eslint-disable-next-line
+    const { logger } = require('redux-logger');
+    middlewares.push(logger);
+  }
+
   const store = createStore(
     rootReducer,
     persistedState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
+    composeEnhancers(applyMiddleware(...middlewares))
   );
 
   store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+    saveState(store.getState());
   });
 
   return store;
