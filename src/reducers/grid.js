@@ -1,4 +1,6 @@
+import isEmpty from 'lodash.isempty';
 import cloneDeep from 'lodash.clonedeep';
+
 import { actionTypes, cellStatus } from '../constants';
 
 import expand from '../utils/expand';
@@ -8,26 +10,27 @@ import fillWarningNumbers from '../utils/fill-warning-numbers';
 import fillRandomBoolean from '../utils/fill-random-boolean';
 
 const grid = (state = [], action) => {
-  let previousState = cloneDeep(Array.isArray(state) ? state : state.grid);
+  if (isEmpty(state)) return state;
+
+  let previousState = cloneDeep(state.grid);
 
   switch (action.type) {
     case actionTypes.LEFT_CLICK_CELL: {
       previousState[action.col][action.row].status = action.value;
-      previousState[action.col][action.row].visibility = true;
       previousState = expand(
         previousState,
         action.col,
         action.row,
         action.value
       );
-      return Object.assign(state, {
+      return Object.assign({}, state, {
         grid: previousState,
       });
     }
 
     case actionTypes.RIGHT_CLICK_CELL: {
       previousState[action.col][action.row].status = action.value;
-      return Object.assign(state, {
+      return Object.assign({}, state, {
         grid: previousState,
       });
     }
@@ -52,6 +55,7 @@ const grid = (state = [], action) => {
           rows: action.rows,
           mines: action.mines,
           level: action.level,
+          date: Date.now(),
         }
       );
     }
