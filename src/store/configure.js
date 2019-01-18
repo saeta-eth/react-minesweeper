@@ -5,13 +5,11 @@ import thunkMiddleware from 'redux-thunk';
 import * as actionCreators from '../actions';
 import rootReducer from '../reducers';
 
-import { loadState, saveState } from '../utils/local-storage';
+import initialState from './initial-state';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const configure = initialState => {
-  const persistedState = loadState(initialState);
-
+const configure = () => {
   const composeEnhancers = composeWithDevTools({
     actionCreators,
     trace: true,
@@ -28,13 +26,9 @@ const configure = initialState => {
 
   const store = createStore(
     rootReducer,
-    persistedState,
+    initialState(),
     composeEnhancers(applyMiddleware(...middlewares))
   );
-
-  store.subscribe(() => {
-    saveState(store.getState());
-  });
 
   return store;
 };
