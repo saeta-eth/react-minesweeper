@@ -13,10 +13,11 @@ import {
   MINES_EXPERT,
 } from '../../constants';
 
-const Config = ({ onSelect, goBack }) => (
+import Button from '../Shared/Button';
+
+const Config = ({ onSelect }) => (
   <div className="options-level">
-    {goBack}
-    <button
+    <Button
       onClick={onSelect.bind(
         this,
         COL_BEGINNER,
@@ -27,8 +28,8 @@ const Config = ({ onSelect, goBack }) => (
       type="button"
     >
       Beginner
-    </button>
-    <button
+    </Button>
+    <Button
       onClick={onSelect.bind(
         this,
         COL_INTERMEDIATE,
@@ -39,8 +40,8 @@ const Config = ({ onSelect, goBack }) => (
       type="button"
     >
       Intermediate
-    </button>
-    <button
+    </Button>
+    <Button
       onClick={onSelect.bind(
         this,
         COL_EXPERT,
@@ -51,13 +52,12 @@ const Config = ({ onSelect, goBack }) => (
       type="button"
     >
       Expert
-    </button>
+    </Button>
   </div>
 );
 
 Config.propTypes = {
   onSelect: PropTypes.func.isRequired,
-  goBack: PropTypes.element.isRequired,
 };
 
 export default Config;

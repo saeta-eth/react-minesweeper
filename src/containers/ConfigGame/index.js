@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Div100vh from 'react-div-100vh';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import GoBack from '../../components/GoBack';
-import Config from '../../components/Config';
-
 import { newGrid as newGridAction } from '../../actions/grid';
+
+import Config from '../../components/Config';
+import Title from '../../components/Shared/Title';
+import Container from '../../components/Shared/Title/Container';
+import Footer from '../../components/Footer';
 
 class ConfigGame extends Component {
   onSelect = (cols, rows, mines, level) => {
     const { newGrid, history } = this.props;
     newGrid(cols, rows, mines, level);
-    history.push('/game/new-game');
+    history.push('/game');
   };
 
   render() {
     return (
-      <Config
-        onSelect={this.onSelect}
-        goBack={<GoBack href="/" text="Go to Menu" />}
-      />
+      <Div100vh>
+        <Container>
+          <Title>Minesweeper</Title>
+          <Config onSelect={this.onSelect} />
+          <Footer />
+        </Container>
+      </Div100vh>
     );
   }
 }

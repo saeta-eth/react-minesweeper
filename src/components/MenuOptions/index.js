@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Button from '../Shared/Button';
+
 const MenuOptions = ({ onSelect }) => (
-  <div className="options">
-    <button value="R" onClick={onSelect} type="button">
-      Resume
-    </button>
-    <button value="S" onClick={onSelect} type="button">
-      Start a new game
-    </button>
+  <div>
+    <Button onClick={onSelect} type="button">
+      Start
+    </Button>
   </div>
 );
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import Square from '../../components/Square';
 
-import { newStopwatch as newStopwatchAction } from '../../actions/stopwatch';
 import {
   leftClickGrid as leftClickGridAction,
   rightClickGrid as rightClickGridAction,
@@ -15,7 +14,6 @@ import {
 
 import {
   cellStatus,
-  STOPWATCH_INITIAL_VALUE,
   COL_INTERMEDIATE,
   ROW_INTERMEDIATE,
   MINES_INTERMEDIATE,
@@ -24,7 +22,7 @@ import {
   MINES_EXPERT,
 } from '../../constants';
 
-class Minesweeper extends Component {
+class Minesweeper extends PureComponent {
   componentWillReceiveProps(nextProps) {
     this.checkIfIamWinner(nextProps.grid);
   }
@@ -39,7 +37,7 @@ class Minesweeper extends Component {
     const isFlag = grid[col][row].status === cellStatus.CELL_FLAG;
     const isFlagMine = grid[col][row].status === cellStatus.CELL_MINE_FLAG;
     const isQuestionMark =
-      grid[col][row].status === cellStatus.CELL_QUESTION_yMARK;
+      grid[col][row].status === cellStatus.CELL_QUESTION_MARK;
     const isQuestionMarkMine =
       grid[col][row].status === cellStatus.CELL_MINE_CELL_QUESTION_MARK;
 
@@ -65,7 +63,7 @@ class Minesweeper extends Component {
     }
   };
 
-  handleClick = (col, row) => {
+  handleLeftClick = (col, row) => {
     const {
       cols,
       rows,
@@ -74,7 +72,6 @@ class Minesweeper extends Component {
       grid,
       leftClickGrid,
       newGrid,
-      newStopwatch,
     } = this.props;
 
     const isInitial = grid[col][row].status === cellStatus.CELL_INITIAL;
@@ -87,12 +84,11 @@ class Minesweeper extends Component {
     if (isMine) {
       alert('Game over');
       newGrid(cols, rows, mines, level);
-      newStopwatch(STOPWATCH_INITIAL_VALUE);
     }
   };
 
   checkIfIamWinner = grid => {
-    const { rows, cols, level, newGrid, newStopwatch, history } = this.props;
+    const { rows, cols, level, newGrid, history } = this.props;
 
     const TOTAL_CELL = rows * cols;
     const arrayPressed = [];
@@ -131,7 +127,6 @@ class Minesweeper extends Component {
         default:
           history.push('/');
       }
-      newStopwatch(STOPWATCH_INITIAL_VALUE);
     }
   };
 
@@ -143,7 +138,7 @@ class Minesweeper extends Component {
         grid={grid}
         rows={rows}
         cols={cols}
-        handleClick={this.handleClick}
+        handleLeftClick={this.handleLeftClick}
         handleRightClick={this.handleRightClick}
       />
     );
@@ -159,7 +154,6 @@ Minesweeper.propTypes = {
   leftClickGrid: PropTypes.func.isRequired,
   rightClickGrid: PropTypes.func.isRequired,
   newGrid: PropTypes.func.isRequired,
-  newStopwatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -169,7 +163,6 @@ const mapDispatchToProps = dispatch => ({
   leftClickGrid: bindActionCreators(leftClickGridAction, dispatch),
   rightClickGrid: bindActionCreators(rightClickGridAction, dispatch),
   newGrid: bindActionCreators(newGridAction, dispatch),
-  newStopwatch: bindActionCreators(newStopwatchAction, dispatch),
 });
 
 const mapStateToProps = state => ({

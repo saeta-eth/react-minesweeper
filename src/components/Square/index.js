@@ -1,28 +1,34 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import Row from '../Row';
 
-const Square = ({ rows, cols, grid, handleClick, handleRightClick }) => (
-  <div className="square-container">
+const SquareContainer = styled.div`
+  display: inherit;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+`;
+
+const Square = ({ rows, cols, grid, handleLeftClick, handleRightClick }) => (
+  <SquareContainer>
     {new Array(rows).fill(0).map((cur, row) => (
       <Row
         key={`row-${row}`}
         grid={grid}
         cols={cols}
         row={row}
-        handleClick={handleClick}
+        handleLeftClick={handleLeftClick}
         handleRightClick={handleRightClick}
       />
     ))}
-  </div>
+  </SquareContainer>
 );
 
 Square.propTypes = {
   rows: PropTypes.number.isRequired,
   cols: PropTypes.number.isRequired,
   grid: PropTypes.instanceOf(Array).isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleLeftClick: PropTypes.func.isRequired,
   handleRightClick: PropTypes.func.isRequired,
 };
 
