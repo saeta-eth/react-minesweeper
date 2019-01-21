@@ -14,7 +14,6 @@ import Footer from '../../components/Footer';
 class Menu extends PureComponent {
   onSelect = () => {
     const { history, newGrid } = this.props;
-
     newGrid();
     history.push('/config');
   };
