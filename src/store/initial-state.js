@@ -5,27 +5,22 @@ import {
   MINES_BEGINNER,
 } from '../constants';
 
-import fillMineGrid from '../utils/fill-mine-grid';
-import fillMultiArray from '../utils/fill-multi-array';
+import getMinesPosition from '../utils/get-mines-position';
+import fillGridWithInitialValues from '../utils/fill-grid-with-initial-values';
+import fillGridWithMines from '../utils/fill-grid-with-mines';
 import fillWarningNumbers from '../utils/fill-warning-numbers';
-import fillRandomBoolean from '../utils/fill-random-boolean';
 
 const initialState = () => {
-  const POSITION_QUANTITY = MINES_BEGINNER * 2;
+  const mines = getMinesPosition(MINES_BEGINNER, ROW_BEGINNER);
 
-  const positionMines = fillRandomBoolean(POSITION_QUANTITY, ROW_BEGINNER);
-
-  const grid = fillMultiArray(ROW_BEGINNER, COL_BEGINNER, {
+  const initialGrid = fillGridWithInitialValues(ROW_BEGINNER, COL_BEGINNER, {
     warning: 0,
     status: cellStatus.CELL_INITIAL,
   });
 
-  const gridWithMines = fillMineGrid(grid, positionMines);
+  const gridWithMines = fillGridWithMines(initialGrid, mines);
 
-  const gridWithWarningNumbers = fillWarningNumbers(
-    gridWithMines,
-    positionMines
-  );
+  const gridWithWarningNumbers = fillWarningNumbers(gridWithMines, mines);
 
   return {
     grid: {

@@ -3,11 +3,11 @@ import cloneDeep from 'lodash.clonedeep';
 
 import { actionTypes, cellStatus } from '../constants';
 
-import expand from '../utils/expand';
-import fillMineGrid from '../utils/fill-mine-grid';
-import fillMultiArray from '../utils/fill-multi-array';
+import getMinesPosition from '../utils/get-mines-position';
+import fillGridWithInitialValues from '../utils/fill-grid-with-initial-values';
+import fillGridWithMines from '../utils/fill-grid-with-mines';
 import fillWarningNumbers from '../utils/fill-warning-numbers';
-import fillRandomBoolean from '../utils/fill-random-boolean';
+import expand from '../utils/expand';
 
 const grid = (state = [], action) => {
   if (isEmpty(state)) return state;
@@ -36,17 +36,17 @@ const grid = (state = [], action) => {
     }
 
     case actionTypes.NEW_GRID: {
-      const POSITION_QUANTITY = action.mines * 2;
-      const positionMines = fillRandomBoolean(POSITION_QUANTITY, action.rows);
-      const grid = fillMultiArray(action.rows, action.cols, {
+      const mines = getMinesPosition(action.mines, action.rows);
+
+      const initialGrid = fillGridWithInitialValues(action.rows, action.cols, {
         warning: 0,
         status: cellStatus.CELL_INITIAL,
       });
-      const gridWithMines = fillMineGrid(grid, positionMines);
-      const gridWithWarningNumbers = fillWarningNumbers(
-        gridWithMines,
-        positionMines
-      );
+
+      const gridWithMines = fillGridWithMines(initialGrid, mines);
+
+      const gridWithWarningNumbers = fillWarningNumbers(gridWithMines, mines);
+
       return Object.assign(
         {},
         {
