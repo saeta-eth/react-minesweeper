@@ -44,4 +44,4 @@ Every time you deploy a project, `now` will provide you with a new, unique URL.
 
 ## License
 
-MIT license. Copyright © 2017.
+MIT license. Copyright © 2019.
