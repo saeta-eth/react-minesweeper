@@ -1,10 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Div100vh from 'react-div-100vh';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import { newGrid as newGridAction } from '../../actions/grid';
 
 import MenuOptions from '../../components/MenuOptions';
 import Title from '../../components/Shared/Title';
@@ -13,8 +9,7 @@ import Footer from '../../components/Footer';
 
 class Menu extends PureComponent {
   onSelect = () => {
-    const { history, newGrid } = this.props;
-    newGrid();
+    const { history } = this.props;
     history.push('/config');
   };
 
@@ -35,14 +30,6 @@ Menu.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  newGrid: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  newGrid: bindActionCreators(newGridAction, dispatch),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Menu);
+export default Menu;
