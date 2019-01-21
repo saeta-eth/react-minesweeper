@@ -1,4 +1,4 @@
-import createConstants from '../utils/constants';
+import createConstants from '../utils/create-constants';
 
 const actionTypes = createConstants(
   'CHANGE_CONFIG',
