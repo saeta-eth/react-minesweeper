@@ -11,9 +11,9 @@ const getMinesPosition = (quantity, max) => {
   const filter = Array.from(new Set(mines.map(JSON.stringify)), JSON.parse)
     .length;
 
-  const isRepeat = filter === quantity;
+  const isRepeat = filter !== quantity;
 
-  if (isRepeat) getMinesPosition();
+  if (isRepeat) getMinesPosition(quantity, max);
 
   return mines;
 };
