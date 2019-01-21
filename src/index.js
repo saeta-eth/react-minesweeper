@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Normalize } from 'styled-normalize';
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './service-worker';
 import GlobalStyle from './global-style';
 import configureStore from './store/configure';
 import Routes from './routes';

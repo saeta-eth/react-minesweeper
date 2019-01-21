@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Div100vh from 'react-div-100vh';
 import { bindActionCreators } from 'redux';
@@ -11,7 +11,7 @@ import Title from '../../components/Shared/Title';
 import Container from '../../components/Shared/Title/Container';
 import Footer from '../../components/Footer';
 
-class ConfigGame extends Component {
+class ConfigGame extends PureComponent {
   onSelect = (cols, rows, mines, level) => {
     const { newGrid, history } = this.props;
     newGrid(cols, rows, mines, level);
