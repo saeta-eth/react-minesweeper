@@ -13,7 +13,7 @@ const getMinesPosition = (quantity, max) => {
 
   const isRepeat = filter !== quantity;
 
-  if (isRepeat) getMinesPosition(quantity, max);
+  if (isRepeat) return getMinesPosition(quantity, max);
 
   return mines;
 };
